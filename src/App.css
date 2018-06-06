@@ -1,0 +1,293 @@
+.App {
+  text-align: center;
+  width: 100%;
+  /* margin-top: 2%; */
+  margin: 0 auto;
+  padding-bottom: 2%;
+}
+.App1{
+  text-align: center;
+  width: 98%;
+  /* margin-top: 2%; */
+  margin: 0 auto;
+  padding-bottom: 2%;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+.navItem {
+  color: white;
+}
+.chatbox{
+  width: 85%;
+  margin: 0 auto;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+.login{
+  padding: 2%;
+}
+.App-title {
+  font-size: 1.5em;
+} 
+.nav{
+ background-color:hsl(235, 66%, 30%);
+color:black;
+
+} 
+.chatbox{
+  width: 80%;
+  margin: 0 auto;
+  border: solid #1a237e 2px;
+  padding: 10px; 
+}
+.imputtag{
+  width: 80%;
+  margin: 0 auto;
+  background-color: black;
+}
+.rounded{
+  -webkit-border-radius: 50px;
+-moz-border-radius: 50px;
+border-radius: 50px;
+/* height: 10x; */
+}
+.slider{
+  margin-top: 2%;
+ width: 100%;
+
+ height: 200px;
+ height: 5px;
+  /* margin: 0 auto; */
+}
+.product_name{
+  /* width: 30%; */
+  /* background-color: black; */
+}
+.rightalign{
+  /* width: 70%; */
+  /* background-color: #DD4B39; */
+  float: right;
+ 
+
+}
+.book{
+color: white;
+font-weight: bold;
+font-size: 12px;
+}
+.navlinkfont{
+  font-size: small;
+  color: white;
+  font-weight: bold;
+
+}
+.navigation{
+  background-color: #1a237e;
+}
+.navlink{
+  background-color: black;
+  color: black;
+}
+.recipientname{
+  background-color: #1a237e;
+  font-size: 25px;
+  width: 100%;
+  margin: 0 auto;
+  font-family: Lato;
+  font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+  
+
+}
+
+.head1{
+  width: 95%;
+  margin: 0 auto;
+  border-radius: 7%;
+   padding: 2%;
+   font-weight: bold;
+  font-size: 20px;
+  color: white;
+  background-color: #1a237e;
+  text-align: center;
+}
+.popover {
+  top: 20% !important;
+  left: 50% !important;
+}
+.head{
+  width: 45%;
+  margin: 0 auto;
+  border-radius: 5%;
+   padding: 2%;
+   font-weight: bold;
+  font-size: 20px;
+  color: white;
+  background-color: #1a237e;
+  text-align: center;
+  /* margin-top: 20%; */
+  /* vertical-align: middle; */
+}
+
+.intro{
+  font-family: Lato;
+background-color: #1a237e;
+font-size: 15px;
+padding: 3%;
+color: white;
+text-align: center;
+margin-top: 4%;
+border-radius: 5px 5px 5px 5px;
+}
+.fonyima{
+  width: 500px;;
+  height: 250px;
+}
+h1, p {
+  font-family: Lato;
+}
+.signup{
+  margin-top: 2%;
+}
+button.social-signin {
+  margin-bottom: 20px;
+  /* width: 220px; */
+  height: 25px;
+  border: none;
+  border-radius: 2px;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+button.social-signin:hover,
+button.social-signin:focus {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+button.social-signin:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+.facebook {
+  background: #32508E;
+  font-family: 'Roboto', sans-serif;
+font-size: 10px;
+width: 70%;
+padding: -2px;
+
+}
+.abc2{
+  position: absolute;
+  left: 90%;
+  top: 150px;
+  background-color: white
+}
+.abc1{
+  position: absolute;
+ margin-left: 62%;
+  top: 8%;;
+}
+.carousel-fade .carousel-item {
+  display: block;
+  position: relative;
+  opacity: 0;
+  transition: opacity .75s ease-in-out;
+}
+.carousel-fade .carousel-item.active {
+  opacity: 1;
+  position: relative;
+}
+/* .Profile_pic{
+  clear: left;
+border-radius: 50%;
+margin-left: 25%;
+margin-top: 5%;} */
+
+/* html,
+body,
+.carousel,
+.carousel-inner, */
+.viewadd{
+  width: 95%;
+  margin: 0 auto;
+  font-size: 16px;
+  margin-top: 5%;
+}
+.carousel-item {
+  /* width: 100%; */
+  /* height: 100%; */
+  margin: 0 auto;
+}
+
+.carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.google {
+  background: #DD4B39;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  width: 70%;
+  padding: -2px;
+}
+
+/* .carousel-item:nth-child(1) {
+  background-color: red;
+}
+.carousel-item:nth-child(2) {
+  background-color: blue;
+}
+.carousel-item:nth-child(3) {
+  background-color: yellow;
+} */
+
+
+
+#fileselector {
+  margin: 2%; 
+}
+#upload-file-selector {
+  display:none;   
+}
+.btn-danger{
+  background-color: #d54b3d;
+  margin: 4.5%;
+  /* align-items: left; */
+  font:10px;
+}
+.loginpage{
+  margin: 2%;
+  width: 80%;
+  margin:0 auto;
+}
+.drawer{
+  margin-top: 5%;
+}
+.abc{
+  background-color: black;
+}
+
+.App-intro {
+  font-size: large;
+}
+.drawer1{
+  width: 90%;
+  height: 90%;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
