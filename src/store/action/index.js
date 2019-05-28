@@ -1,13 +1,16 @@
 import fb from '../firebase';
 import store from '../index';
+
+
 import { CurrentUser } from '../reducers/authentication';
+
 export function login (user){
     return (dispatch)=>{
         fb.auth().signInWithEmailAndPassword(user.email, user.password).then((Currentuser) => {
             // console.log(Currentuser,'userinfo');
       
 
-            dispatch(Signinstatus("Login Successfully"));
+            // dispatch(SignALLPOSTinstatus("Login Successfully"));
 
             
         }).catch((error) => {
@@ -43,6 +46,7 @@ export function SignOutstatus(mes){
 
 
 export function setimageurl(imageurl){
+    console.log('chla',imageurl);
     return{
         type:"SET_URL",
         imageurl:imageurl    }
@@ -54,7 +58,12 @@ return{
      type:'ALERT_CLOSE',alert:false,message:''
  
 }};
-
+export function BookMessages(){
+    fb.database().ref('/').child('BookDetails').on('child_added',(data)=>{
+        let messageObj=data.val().messages;
+        console.log(messageObj);
+    })
+}
 export function alertopen(msg){
     return{
         type:'ALERT_OPEN',alert:true,message:msg
@@ -67,13 +76,29 @@ export function alertopen(msg){
 
 var allpost=[];
 
+// export function Getadds(){
+//     return (dispatch)=>{
+//         allpost=[];
+//     fb.database().ref('/').child('Adds').on('child_added',(data)=>{
+
+//         var obj=data.val();
+//         obj.id=data.key;
+       
+//         allpost.push(obj);
+//         dispatch(getallpost());
+
+//     })
+//     console.log(allpost,'post');
+
+// }}
 export function Getadds(){
+
     return (dispatch)=>{
         allpost=[];
-    fb.database().ref('/').child('Adds').on('child_added',(data)=>{
-
+    fb.database().ref('/').child('BookDetails').on('child_added',(data)=>{
         var obj=data.val();
         obj.id=data.key;
+        // alert(obj.id);
        
         allpost.push(obj);
         dispatch(getallpost());
@@ -85,15 +110,20 @@ export function Getadds(){
 
 var allmessages=[];
 export function Getmessagelist(){
+    // alert('bilal')
     return(dispatch)=>{
 fb.database().ref('/').child('Message').on('value',(data)=>{
+    // alert('usman');
 let ob=data.val();
+console.log(ob,'obbbbb');
 allmessages.push(ob);
+
 dispatch(getallmessage());
 
 })
     }
 }
+
 
 export function getallmessage(){
     return{
@@ -119,12 +149,12 @@ return(dispatch)=>{
         console.log(bookname,'bookname');
         if(obj.BookName==bookname){
         allpost=[obj];
-        dispatch(getallpost());
+        // dispatch(getallpost());
         found=true;
     }
-if(!found){
-dispatch(alertopen('Not Found'))
-}
+// if(!found){
+// dispatch(alertopen('Not Found'))
+// }
 }
  
 

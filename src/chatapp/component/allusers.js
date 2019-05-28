@@ -12,7 +12,11 @@ import Avatar from 'material-ui/Avatar';
 import Drawer from 'material-ui/Drawer';
 import {startGetAllUsersAction} from '../../store/action/users';
 import history from '../../History';
+import Loader from '../../components/loader';
+import LoderGif from '../../components/load.gif';
+
 import SearchButton from 'material-ui/svg-icons/action/youtube-searched-for';
+import '../.././App.css';
 
 import {Conversation_BTW_} from '../../store/action/messages';
 class Allusers extends React.Component{
@@ -40,10 +44,9 @@ class Allusers extends React.Component{
 
    }
 
-    openchatbox(uid,imageurl){
-
-console.log(this.props.CurrentUser.uid);
-        this.props.Conversation_BTW_(uid,this.props.allMessages,imageurl);
+    openchatbox(obj){
+console.log(obj,'obj')
+        this.props.Conversation_BTW_(this.props.allMessages,obj);
       history.push('/chat');
       this.props.close();
 
@@ -57,9 +60,12 @@ this.setState({users:nextProps.allusers.allUsers,
    
 }
     render(){
-       
+        console.log(this.state.users,'////////////////')
         return( 
-            <div>
+          this.state.users!=null ?
+( 
+<div className="allusers">
+                
         <Drawer
             width={180}
             open={this.state.open}
@@ -72,9 +78,9 @@ this.setState({users:nextProps.allusers.allUsers,
 
     
             </IconButton>
-        <h3 className="head1">Friends</h3>
+        <h3 className="head1">USERS</h3>
             
-            <div className="input-group input-group-sm mb-3">
+            {/* <div className="input-group input-group-sm mb-3">
 <input type="text" className="form-control" placeholder=" Search By Name" name="friendsearch" onChange={this.Change}   />
   <div className="input-group-prepend">
   <span  className="input-group-text" id="inputGroup-sizing-sm">
@@ -82,7 +88,7 @@ this.setState({users:nextProps.allusers.allUsers,
        <SearchButton  color={indigo900}  />
      </IconButton></span>
   </div>
-</div>
+</div> */}
     
           <div >
 <List
@@ -90,12 +96,11 @@ this.setState({users:nextProps.allusers.allUsers,
               {console.log(this.state.users,'uusers')}
 
               {this.state.users.map((obj,index)=>{
-                  console.log(obj.username)
 
                   return(
                        <ListItem
                   
-                  onClick={()=>this.openchatbox(obj.uid,obj.Profileimageurl)}
+                  onClick={()=>this.openchatbox(obj)}
                     key={obj.uid}
                   style={{ backgroundColor: 'white' }}
                 
@@ -120,6 +125,7 @@ this.setState({users:nextProps.allusers.allUsers,
     
         </Drawer>
     </div>
+    ):(<Loader loadingimage={LoderGif} />)
          )}}
      
 

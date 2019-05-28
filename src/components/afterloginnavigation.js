@@ -105,6 +105,8 @@ export default class HomeNav extends React.Component {
               <NavItem>
                  <IconButton tooltip="Profile" onClick={this.OpenDrawer}>
        <Person color={grey50} />
+       <p>
+         </p>
      </IconButton>
 
               </NavItem>
@@ -114,17 +116,15 @@ export default class HomeNav extends React.Component {
        <People color={grey50} />
      </IconButton>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                <Notification color={grey50} />
-              </NavItem>
+              </NavItem> */}
               
           
              
             </Nav>
-          {/* </Collapse> */}
      </div>
         </Navbar>
-     {/* { this.state.userdrawer ?(  ):''} */}
       <UserDrawer open={this.state.userdrawer} close={this.userhandleclose} /> 
 
        {this.state.opendrawer ?( <Drawer open={this.state.opendrawer} close={this.handleclose}/>):''}

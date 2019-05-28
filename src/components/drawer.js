@@ -22,7 +22,12 @@ import IconButton from 'material-ui/IconButton';
 import { deepPurple500, cyan900, red500, yellow500, blue500,indigo900,grey50 } from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
 import history from '../History';
+import LoaderGif from './load.gif';
+import Loader from './loader';
 
+//icons 
+import Home from './images/home.png';
+ 
  
 import Addcircle from 'material-ui/svg-icons/content/add-circle-outline';
 import CreateAdd from './createAd';
@@ -60,7 +65,7 @@ class Maindrawer extends React.Component {
       fb.auth().signOut().then(function(mess) {
         console.log('Signed Out');
         history.push('/');
-        this.props.SignOutstatus('SignOut Successfully');
+        // this.props.SignOutstatus('SignOut Successfully');
         
       }, function(error) {
         console.error('Sign Out Error', error);
@@ -77,14 +82,10 @@ class Maindrawer extends React.Component {
 
   render() {
     return (
+      this.state.CurrentUser!=null ?
+      (
       <MuiThemeProvider>
 
-              {/* <div > */}
-
-        {/* <RaisedButton
-          label="Open Drawer"
-          onClick={this.handleToggle}
-        /> */}
 
         <Drawer
 
@@ -102,19 +103,7 @@ class Maindrawer extends React.Component {
         < Back color={indigo900}/>
 
       </IconButton>
-        {/* <center> */}
-          {/* <Card style={{width:'170px'}}> */}
-    {/* <CardHeaer
-    style={{width:'170px'}}
-      title="Bilal Usman"
-      subtitle={<center>UIT</center>}
-      avatar={Bookicon}
-    /> */}
-    {/* <Avatar > */}
-{/* <img src="https://firebasestorage.googleapis.com/v0/b/booksharing-99d4f.appspot.com/o/images%2F1d77d7b9-0d5e-404b-b9de-e3450b36f2f1.PNG?alt=media&token=720be3d1-74ee-47ed-a4af-6208c2e47a76"/> */}
-      {/* </Avatar> */}
-    {/* </Card> */}
-    <div >
+           <div >
  <List         
 >
  <ListItem 
@@ -157,6 +146,7 @@ class Maindrawer extends React.Component {
 
       {/* </div> */}
       </MuiThemeProvider>
+      ):(<Loader loadingimage={LoaderGif}/>)
     );
   }
 }

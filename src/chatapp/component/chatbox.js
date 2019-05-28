@@ -10,6 +10,8 @@ import fb from '../../store/firebase';
 import { stat } from 'fs';
 import moment from 'moment';
 import Paper from 'material-ui/Paper';
+import Divider from 'material-ui/Divider';
+
 const style = {
  
     width: '90%',
@@ -82,36 +84,25 @@ componentDidMount(){
 }
     render() {
 
+
         return(
             <Paper style={style} zDepth={1} >
-            {/* <p className="recipientname">bilal usman </p> */}
             <div>
-        {/* <div className="chatbox"> */}
 
-        {/* {
-            
-            (this.state.conversationmessages!=null)?
-            this.state.conversationmessages.map((obj,index)=>{
-            if(obj.postid){
-                console.log(JSON.parse(obj.message))
-                // obj.message=<p><img src='https://firebasestorage.googleapis.com/v0/b/booksharing-99d4f.appspot.com/o/images%2F58fc4b4b-70c4-4c3b-9e09-5c87437bf473.PNG?alt=media&token=4290c615-db25-4fd8-b9cb-e8e92b7fe3a2"/><br/>bilal </p>
-            }
-        }):''
-    } */}
-    {console.log(this.state.conversationmessages,'conver')}
+       <p className="username">{this.props.recipientname}</p>
+       <Divider color={grey50} />
+   {console.log(this.props.recipientname,'reci')}
         <Chatbubble  conversationmessages={this.state.conversationmessages}/>
-<span className="inputtag">
-</span>
 
-<div className="input-group mb-3">
+
+ <div className="input-group mb-3">
 <input type="text" className="form-control form-control-sm rounded" name="message" onChange={this.Change}  />
   <div className="input-group-prepend">
   <IconButton  onClick={this.submit} >
        <Send color={indigo900}  />
      </IconButton>
   </div>
-</div>
-        {/* </div> */}
+</div> 
         {        console.log(this.props.CONVERSATIONdetails,'myimage')
 }
             </div>    
@@ -125,6 +116,7 @@ CONVERSATIONdetails:state.CONVERSATION,
 allMessages:state.alusermessages.allMessages,
 conversationmessages:state.CONVERSATION.messages,
 CurrentUser:state.CurrentUser,
+recipientname:state.CONVERSATION.recipientname
 
       }
   }

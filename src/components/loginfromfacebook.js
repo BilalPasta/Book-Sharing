@@ -6,16 +6,20 @@ import { Button } from 'reactstrap';
 import {handleClose,Signinstatus,Errorcatch,CurrentuserDetails} from '../store/action/index';
 import {connect} from 'react-redux';
 import Alert from './alertbox';
+import Facebook from './images/facebook.png';
+
 import '.././App.css';
 
 class Facebooklogin extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        
-
-        // }
+        this.state={
+          allusers:this.props.allusers,
+          userenrolled:false
+        }
+      
         this.login = this.login.bind(this);
+       
     }
 
     componentDidMount() {
@@ -29,9 +33,20 @@ class Facebooklogin extends React.Component {
               email:user.email,
               contact:user.identifierNumber
             };
+            // this.state.allusers.map((obj,index)=>{
+            //   if(obj.uid==user.uid){
+            //     this.setState({userenrolled:true});
+            //   }
+            //             })
+                
             this.props.CurrentuserDetails(userinfo);
+            // if(this.state.userenrolled!=true){
+            //   fb.database().ref('/').child('users').push(userinfo);
+            // }
             history.push('/viewadds');
+
           }
+      
         });
       }
       componentWillReceiveProps(nextProps){
@@ -54,12 +69,11 @@ class Facebooklogin extends React.Component {
 
     render() {
         return (<span>
-          {/* {
-            (this.state.alert) ?
-             (<Alert open={this.state.alert} handleClose={this.props.handleClose()}  message={this.state.errormessage}/>   ) : ''}
-            */}
-     <button  onClick={this.login}   className="social-signin facebook" >Log in with facebook </button>
-
+         
+     {/* <button     className="social-signin facebook" >Log in with facebook </button> */}
+     <button onClick={this.login}  className="hvr-pulse btnlog">
+                     <img src={Facebook} alt="FACEBOOK"/>
+ 					</button>
                </span> 
         
         )
@@ -67,8 +81,9 @@ class Facebooklogin extends React.Component {
 }
 function mapstatetoprops(state){
   return{
-      Logindetails:state.login
-  }
+      Logindetails:state.login,
+      allusers:state.allusers,
+    }
 }
 function mapdispatchtoprops(dispatch){
   return{

@@ -62,7 +62,7 @@ render(){
                   
       
 { this.state.AllBooks.map((obj,index)=>{
-  return(<div>
+  return(<div  key={index}>
 
       {(obj.userdetails.uid==this.state.CurrentUser.uid)?
   (<div className="viewadd" key={index}>

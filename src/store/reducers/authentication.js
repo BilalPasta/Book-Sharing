@@ -42,6 +42,7 @@ export const SignupimageUrl=(state=initial_url,action)=>{
 switch(action.type){
     case 'SET_URL':
 //userimage url and book url
+console.log(action.imageurl,'llllllllllllllllllll')
     return {...state,url:action.imageurl}
 default:
 return state;

@@ -13,8 +13,20 @@ import {deepPurple500,cyan900  ,red500, yellow500, blue500,indigo900,grey50} fro
 import Divider from 'material-ui/Divider';
 import Message from './message';
 import Loader from './loader';
+import SearchInput, {createFilter} from 'react-search-input';
 import Booksearch from './booksearch';
 import Alert from './alertbox';
+import LoaderGif from './images/loading.gif';
+import MessageBox from '../components/chatWindow';
+const KEYS_TO_FILTERS = ['BookName']
+import ContactNumber from './ContactNumber';
+import Contact from './Contact';
+import RaisedButton from 'material-ui/RaisedButton';
+import GetContact from './GetContactNofromsocialAccount';
+const style = {
+  margin: 12,
+  
+};
 
 class Viewadds extends React.Component{
 constructor(props){
@@ -27,20 +39,33 @@ this.state={
   loaded:true,
   forbooksearcherror:this.props.forbooksearcherror,
   obj:{},
-  CurrentUser:this.props.CurrentUser
+  CurrentUser:this.props.CurrentUser,
+  searchTerm: '',
+  OpenContactDialog:true
 
 }
+this.searchUpdated = this.searchUpdated.bind(this)
+
 this.Message=this.Message.bind(this);
 this.handleClose=this.handleClose.bind(this);
+this.handleDialogClose=this.handleDialogClose.bind(this);
+
 
 }
+
 
 handleClose (){
   this.setState({formessage:false})
 }
-componentDidMount() {
+handleDialogClose(){
+  this.setState({
+    OpenContactDialog:!this.state.OpenContactDialog
+  })
+}
+componentWillMount() {
   // this.props.getStudentsFromFB();
   this.props.Getadds();
+  
 
   this.setState(() => ({
     loaded: true,
@@ -53,7 +78,9 @@ this.setState({
   CurrentUser:nextProps.CurrentUser});
 
 }
-
+searchUpdated (term) {
+  this.setState({searchTerm: term})
+}
 
 Message(obj){
   this.setState({formessage:true,obj:obj})
@@ -62,7 +89,10 @@ console.log(obj,'message');
 
 }
 render(){
-
+ 
+  console.log(this.state.AllBooks,"bilalusman");
+  alert(this.state.AllBooks);
+  const filteredEmails = this.state.AllBooks.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return( 
       
 
@@ -72,26 +102,32 @@ render(){
                 this.state.AllBooks.length !== 0 ? (
                   <div>
                     <br/>
+                    {console.log(this.state.AllBooks,'allbooks')}
                    <h2 className="head">BOOK ADDS</h2>
     <br/>
     <div className="container">
+   
                     <div className="row">
                     <div className="col-sm-8">
-    <h3><Booksearch/></h3>
-                  
-    {console.log(this.state.AllBooks,'books')}
-      
-{ this.state.AllBooks.map((obj,index)=>{
-  if(this.state.CurrentUser.uid!=obj.userdetails.uid){
+    
+             <SearchInput className="search-input" onChange={this.searchUpdated} />
+
+    
+  
+{filteredEmails.map((obj,index)=>{ 
+  {console.log(obj,'uid')}
+
   return(
     
   <div className="viewadd" key={index}>
 <Card>
+  {alert()}
 <CardHeader
   title={<b >{obj.userdetails.name}</b>}
   subtitle={obj.userdetails.email}
 
   avatar={obj.userdetails.imageurl}
+
 />
 <Divider/>
 <p title="Book Name" style={{textAlign:'center',fontWeight:'bold',fontSize:'18px',fontFamily:'Lato' ,backgroundColor:'#1a237e', color:'#ffffff',borderRadius:'2px 2px 2px 2px',padding:'4px'}}>{obj.BookName.toUpperCase()}</p>
@@ -101,35 +137,42 @@ render(){
 >
   <img src={obj.BookUrl} alt="" height="150px"/>
 </CardMedia>
-<CardText style={{fontSize:"11px"}}>
+<CardText >
 {obj.BookDescription} 
+        </CardText>
+        <CardActions>
+  
+    <RaisedButton label="Contact" labelStyle={{color:'#fff',fontWeight:'bold'}}  buttonStyle={{backgroundColor:'#1a237e'}}    />
 
-</CardText>
- <CardActions  >
-{console.log(this.props.allpost,'alpost')}
-<MUI.RaisedButton label="Message" onClick={()=>  {this.Message(obj)}
-}
- labelStyle={{fontSize:'10px'}}  style={{height:'25px',margin:'0 auto'}} backgroundColor={indigo900} labelColor={grey50} 
-/>
-</CardActions>  
-<Message open={this.state.formessage} obj={this.state.obj} handleClose={this.handleClose} />
-
- {/* {(this.state.forbooksearcherror.alert)?(<Alert open={this.state.forbooksearcherror.alert} message={this.state.forbooksearcherror.message} handleClose={this.props.handleClose}/>):('')} */}
+          
+        </CardActions>
+ 
+    
 
 </Card>
-</div>)};
+
+</div>)
+
 })
+
 }
 
 
   </div>
-  </div> </div>
-  </div>):(<Loader />)
+  </div> 
+</div>
+
+  </div>
+  ):(<Loader loadingimage={LoaderGif} />)
   ) 
 }
 
 
-
+componentDidMount(){
+  // if(this.props.CurrentUser.contact==null){
+  //   this.setState({OpenContactDialog:true});
+  // }
+}
 
 }
 function mapstatetoprops(state){

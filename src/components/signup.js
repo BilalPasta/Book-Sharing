@@ -1,7 +1,10 @@
 
 import React, { Component } from 'react';
 import '.././App.css';
+import Bounce from 'react-reveal/Bounce' 
+import logo from './images/uitlogo.png';
 import { Container, Row, Col } from 'reactstrap';
+import './signup.css';
 import { deepPurple500, cyan900, red500, yellow500, blue500, indigo900, grey50 } from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -129,12 +132,19 @@ class Signup extends React.Component {
 
 
     render() {
-        return (<div className="App1">
+        return (
+            <Card><div className="App1">
+<span className="login100-form-title p-b-70">
+<Bounce left  cascade><h3 style={{color:'peach'}}>WELCOME TO UIT BOOKSHARING</h3></Bounce>
+</span>
+<span className="login100-form-avatar">
+						<img src={logo} alt="AVATAR"/>
+					</span>
             <MuiThemeProvider >
                 <div  >
                     {/* <Alert open={this.state.open} handleClose={this.handleClose} message={this.state.message} /> */}
-                    <Card>
-                        <h2 className="head">SIGN UP</h2>
+                    
+                        
 
                         <Container>
 
@@ -207,15 +217,19 @@ class Signup extends React.Component {
                                 </Col>
 
                             </Row>
-    
-                            <RaisedButton label={<b>Register</b>} labelStyle={{ fontSize: '14px' }} style={{ height: '25px' }} backgroundColor={indigo900} labelColor={grey50} disabled={(this.state.email != '' && this.state.password != '' && this.state.username != '' && this.state.Institute != ''   && this.state.contact != '' && this.state.Profileimageurl != '')?(false):(true)} onClick={this.Signup} />
+                            <div style={{float:'right'}} className="container-login100-form-btn">
+						<button   className="login100-form-btn hvr-pulse" onClick={this.Signup}>
+							REGISTER
+						</button>
+					</div> 
+                            {/* <RaisedButton label={<b className="hvr-pulse login100-form-btn">Register</b>} labelStyle={{ fontSize: '14px' }} style={{ height: '25px' }} backgroundColor={indigo900} labelColor={grey50} disabled={(this.state.email != '' && this.state.password != '' && this.state.username != '' && this.state.Institute != ''   && this.state.contact != '' && this.state.Profileimageurl != '')?(false):(true)} onClick={this.Signup} /> */}
 
                         </Container>
                         <br />
-                    </Card>
+                   
                 </div>
             </MuiThemeProvider>
-        </div>
+        </div> </Card>
         );
     }
 }

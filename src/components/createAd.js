@@ -74,9 +74,8 @@ this.setState({
                   }
 
       Submit(){
-       console.log(this.state,'submit');
        let obj={
-        BookName:this.state.BookName,
+        BookName:this.state.BookName.toLowerCase(),
         BookDescription:this.state.BookDescription,
         BookUrl:this.state.BookUrl,
         Price: this.state.price,
@@ -84,10 +83,12 @@ this.setState({
 
   };
         if(this.state.BookName!=''&&this.state.BookDescription!=''&&this.state.userdetails!=null&&this.state.price!='' &&this.state.BookUrl!=''){
-   
+  //  console.log(obj,'oooooobobbbbbbbbbbbbbbbbjjjjjjjj')
 
-        fb.database().ref('/').child('Adds').push(obj).then(()=>{
+        fb.database().ref('/').child('BookDetails').push(obj).then(()=>{
           this.props.handleClose();
+        }).catch((error)=>{
+console.log(error.message);
         })
  
       }
@@ -176,7 +177,7 @@ style={{width:'90%'}}
 <Profile/>
 </div>
             </center>
-
+vrrdrrrrrr
             </Dialog>
           </div>)
     }

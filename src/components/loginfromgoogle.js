@@ -8,25 +8,35 @@ import {startGetAllUsersAction} from '../store/action/users';
 import {connect} from 'react-redux';
 import Alert from './alertbox';
 import '.././App.css';
-import {startGetUserMessages} from '../store/action/messages';
+import './signin.css';
+import Google from './images/gmail.png';
 
+
+import {startGetUserMessages} from '../store/action/messages';
+import email from './images/gmail.png';
+import facebook from './images/facebook.png';
+import Bounce from 'react-reveal/Bounce' 
 
 class Googlelogin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          
+          OpenContactDialog:false
         }
         this.login = this.login.bind(this);
         this.foralert=this.foralert.bind(this);
+        // this.handleclose=this.handleclose.bind(this);
+
+
     }
 componentWillReceiveProps(nextProps){
   this.props=nextProps;
 }
+
     componentWillMount() {
         fb.auth().onAuthStateChanged(user => {
           if (user) {
-            console.log(user);
+            console.log(user,'userinfo');
             var userinfo={
               uid:user.uid,
               name:user.displayName,
@@ -36,18 +46,16 @@ componentWillReceiveProps(nextProps){
             };
             this.props.SigninStatus();
             this.props.CurrentuserDetails(userinfo);
-            this.props.startGetAllUsersAction(user.uid);
-     this.props.startGetUserMessages(user.uid);
-// console.log('')
+            // this.props.startGetAllUsersAction(user.uid);
+    //  this.props.startGetUserMessages(user.uid);
             history.push('/viewadds');
-            // this.foralert();
-            console.log(this.state,'state',this.props);
           }
+        
         });
       }
       
 
-    
+   
        foralert(){
          console.log('chl ja');
 
@@ -72,16 +80,18 @@ componentWillReceiveProps(nextProps){
 
 
     render() {
-      console.log('login',this.props.Logindetails);
-      console.log(this.props.Currentuser);
-        return (
      
+        return (
+     <div>
            
             
-                <button  onClick={this.login} color="secondary" size="sm"  className="social-signin google">Log in with Google+ </button>  
-               
-                
-            
+                {/* <button   color="secondary" size="sm"  className="social-signin google"  ><img src={Google}/></button>   */}
+                <button onClick={this.login} className="hvr-pulse btnlog"  >
+						<img src={Google} alt="GOOGLE"/>
+                      
+						
+					</button>
+            </div>
         )
     }
 }

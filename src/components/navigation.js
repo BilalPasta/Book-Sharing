@@ -11,7 +11,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-  import history from '../History';
+  // import history from '../History';
   import { Link } from 'react-router-dom'
   import '.././App.css';
   import Book from 'material-ui/svg-icons/action/book';
@@ -93,7 +93,7 @@ Contactinfo(){
                 <NavLink onClick={this.Contactinfo}  className="navlinkfont">Contact</NavLink>
               </NavItem>
               <NavItem style={{color:'white'}}>
-                <NavLink tag={Link} to='/signup' className="navlinkfont">SignUp</NavLink>
+                <NavLink tag={Link} to={`/${this.props.pagelink}`} className="navlinkfont">{this.props.pagename}</NavLink>
               </NavItem>
              <Alert open={this.state.inform} message={this.state.informmessage} handleClose={this.handleClose} />
             </Nav>

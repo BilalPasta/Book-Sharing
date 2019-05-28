@@ -1,28 +1,30 @@
 import fb from '../firebase';
 import store from '../index';
+
 export const startAddMessages = (messageObj) => {
     return (dispatch) => {
-        // console.log(,'reci');
      let   obj= store.getState().CONVERSATION;
-     console.log(userMessages,'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy');
-       obj.messages=userMessages;
-       console.log(obj);
-         fb.database().ref('messages').push(messageObj).then(()=>{
+     obj.uid=obj.fuid;
+     obj.username=obj.recipientname;
+         fb.database().ref('/').child('messages').push(messageObj).then(()=>{
+            dispatch(Conversation_BTW_(userMessages,obj));
+            console.log(obj,'mmmmmmmmmmmmmmmmmmmmmmmmm');
 
          })
-         console.log(obj,'mmmmmmmmmmmmmmmmmmmm');
-         dispatch(Conversation_BTW_(obj.fuid,obj.messages,obj.Profileimageurl));
 
     };
 };
 
-export const Conversation_BTW_=(uid,messages,Profileimageurl)=>{
+
+export const Conversation_BTW_=(message,obj)=>{
+    
   return{
         type:'CONVERSATION',
-        fuid:uid,
-        messages:messages,
-        Profileimageurl:Profileimageurl,
-        Profileimageurl2:store.getState().CurrentUser.imageurl
+        fuid:obj.uid,
+        messages:message,
+        Profileimageurl:obj.Profileimageurl,
+        Profileimageurl2:store.getState().CurrentUser.imageurl,
+        recipientname:obj.username
 }}
 
 
@@ -36,7 +38,15 @@ const getUserMessages = (userMessagesArray) => {
     }
 };
 
+const message_for_notify=()=>{
+    console.log(notification_messages,'messagessssssssssssssss');
+    return{
+    type:'NOTICATIONMESSAGE',
+message:notification_messages}
+} 
+
 var  userMessages = [];
+let notification_messages=[];
 export const startGetUserMessages = (authUserFUID) => {
 
     userMessages=[];
@@ -46,9 +56,12 @@ export const startGetUserMessages = (authUserFUID) => {
             console.log(messages.val(),'messages');
             messages=messages.val();
             console.log(messages,'kkk');
-            // messages.forEach((message)=>{
                 console.log(messages);
                 console.log(authUserFUID);
+                if(messages.recipientuid==authUserFUID&&messages.seen==false){
+                    notification_messages.push(messages);
+                    dispatch(message_for_notify(notification_messages));
+                }
                 if (messages.senderuid === authUserFUID || messages.recipientuid === authUserFUID) {
                     console.log(messages);
                     userMessages.push({
